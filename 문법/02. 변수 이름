@@ -1,7 +1,8 @@
-1. package: 소스코드에서는 상단에서 패키지 경로를 나타낼 때 쓰인다.
+1. package
 package com.google.search.common;
 - 각 디렉토리 이름은 소문자만 사용 ('_', '-', '.' 등으로 띄어쓰기를 나타내지 않는다.)
   '.'로 상하위 디렉토리 구분
+* package 키워드는 소스코드 상단에서 해당 패키지의 경로를 나타낸다.
 
 2. class & interface
 public class Record {}
@@ -14,7 +15,7 @@ public interface Iterable {}
 public interface List {}
 - 쌍봉낙타
   의미는 형용사인데, List나 Map 같은 클래스들의 패밀리인 경우는 명사도 가능
-
+  
 3. method & variable
 public Long getId() {}
 public void remove(object o) {}
