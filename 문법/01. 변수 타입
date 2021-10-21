@@ -1,3 +1,5 @@
+기본타입 / 참조타입 / 상수 / 배열 / 리스트 / 집합, 맵 / 제네릭 / 
+
 1. 기본 타입
 byte n = 100; // -128 ~ 127 (1바이트 = 8비트)
 short n = 100; // 대략 ±3만 (2바이트)
@@ -88,9 +90,10 @@ nums = {2, 3, 4, 5}; // 에러
 import java.util.ArrayList;
 
 ArrayList list1 = new ArrayList<Integer>(); // <>안에 타입을 지정하며, 생략 가능하다.
+* 괄호 안에 값을 넣어서 초기화할 수도 있다. 이것은 Set이나 Map도 동일하다.
 - (10); // 초기 용량을 설정
 - (list0); // 다른 ArrayList로 초기화(Set로도 초기화 가능)
-- (Arrays.asList(1, 2, 3)); // 기본값들로 초기화
+- (Arrays.asList(1, 2, 3)); // 기본값들로 초기화 // import java.util.Arrays;
 
 list1.contains(1); // 값 1을 포함하는지 확인 (true or false)
 list1.size(); // 배열 크기 리턴
@@ -118,6 +121,12 @@ list1.removeFirst(); // remove()와 동일
 list1.removeLast();
 
 (예시) 출력
+// List, Set, Map 등은 print함수로 출력할 수 있다.
+System.out.println(lst); // [1, 2, 3]
+System.out.println(set); // [1, 2, 3]
+System.out.println(map); // {"one"=1, "two"=2, "three"=3}
+
+// 배열처럼 for-each나 iterator를 이용할 수도 있다.
 // for-each
 for (Integer value: list1) {
     System.out.println(value);
@@ -128,3 +137,73 @@ Iterator<Integer> iter = list1.iterator();
 while (iter.hasNext()) {
     System.out.println(iter.next());
 }
+
+6. 집합, 맵
+Set: Set은 집합을 정의하는 인터페이스이다. 요소가 중복되지 않는다. 
+- HashSet: 일반적인 set
+- LinkedHashSet: 추가된 순서나 접근한 순서대로 접근 가능
+- TreeSet: 정렬된 순서로 저장
+
+(예시)
+import java.util.HashSet;
+
+HashSet<Integer> set = new HashSet<Integer>();
+set.add(1);
+set.remove(1);
+set.clear();
+set.contains(1);
+set.size();
+
+Map: Key-Value 쌍을 저장
+- HashMap: 키와 값으로 null 허용
+- LinkedHashMao: 추가된 순서대로 접근 가능
+- TreeMap: 이진검색트리 형태, 정렬된 순서로 저장
+
+(예시)
+import java.util.HashMap;
+
+HashMap<String, String> map = new HashMap<String, String>();
+map.put("people", "사람"); // add가 아닌 put을 쓴다.
+map.get("people");
+map.remove("people");
+map.containsKey("people");
+map.size();
+
+7. 제네릭
+일반타입으로, 타입을 정해놓지 않고 외부에서 정하게 한다.
+암묵적으로 대문자 하나로 표시한다.
+- T, E, K, V, N (Type, Element, Key, Value, Number)
+
+(예시)
+public class ClassName <T> {}
+public class HashMap <K, V> {}
+public interface List<E> extends Collenction<E> {} // <E>는 붙여쓴다.
+
+(예시) 기본 get/set 구현
+public class ClassName<E> {
+
+    private E element;
+    
+    void set(E element) {
+        this.element = element;
+    }
+    
+    E get() {
+        return element;
+    }
+}
+
+8. 이넘
+enum Direction {EAST, WEST, SOUTH, NORTH}
+- 클래스처럼 쌍봉낙타이며 마찬가지로 뒤에 세미콜론을 붙이지 않는다.
+  의미는 명사
+- 원소들은 상수처럼 대문자로만 쓴다.
+
+9. 어노테이션
+public @interface FunctionalInterface {}
+public @Async Documented {}
+public @Test Documented {}
+- 인터페이스처럼 쌍봉낙타이며 마찬가지로 뒤에 세미콜론을 붙이지 않는다.
+  의미는 동일하게 형용사거나 Interface 같은 패밀리는 명사
+  인터페이스는 -able 류의 형용사가 많고, 어노테이션은 -ed 류의 형용사가 많다.
+  
