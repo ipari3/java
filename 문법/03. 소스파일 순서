@@ -1,0 +1,33 @@
+/*
+시작 주석
+*/
+
+package java.code.convention;
+
+import java.util.*;
+
+
+/**
+문서화 주석
+*/
+public class Class1 {
+    /*
+    구현 주석
+    */
+    
+    // static 변수; public > default > protected > private
+    public static T var;
+    static T var;
+    protected static T var;
+    private static T var;
+    
+    // 일반 변수; public > default > protected > private
+    public T var;
+    T var;
+    protected T var;
+    private T var;
+    
+    // 생성자
+    
+    // 메소드: 기능성에 따라 순서를 정한다.
+}
