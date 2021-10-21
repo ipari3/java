@@ -1,0 +1,67 @@
+1. 구문: if / switch / for / while
+
+[if]
+if (cond) {
+    ...
+} else if (cond) {
+    ...
+} else {
+    ...
+}
+
+[switch]
+switch(c) {
+    case 'A': result = 1;
+        break; // 생략시 다음 케이스 진행
+    default: result = 2;
+        break;
+}
+
+[for]
+// 일반 for
+for (int i = 0; i < length; i++) {
+    ...
+}
+
+// for each
+for (String name: names) {
+    ...
+}
+
+[while]
+while (cond) {
+    ...
+}
+
+do (cond) {
+    ...
+} while (cond);
+
+*cond 등을 괄호로 묶는 것은 필수다.
+*do-while만 끝에 세미콜론이 필수다.
+
+2. 사칙연산, 나머지연산
++, -, *, /, %
+파이썬의 몫연산(//)은 없다. (자바에서 //는 주석)
+다만, 정수끼리 나누면 몫을 얻는다.
+System.out.println(10/3); // 3
+System.out.println(10.0/3); // 3.33333333 (연산은 왼쪽부터 시작하므로 왼쪽을 소수로 써준다.)
+
+3. 따옴표
+작은따옴표는 문자, 큰따옴표는 문자열
+System.out.println('a'); // a (아스키코드. 기본적으로는 부호로 출력)
+System.out.println("a"); // a (문자열)
+System.out.println('a' + 0); // 97 (아스키코드. 10진수와 연산하면 10진수로 출력)
+System.out.println('a' * 2); // 194
+System.out.println('0' + 0); // 48 ('0'도 아스키코드.)
+System.out.println("a" + 0); // a0 (문자열. 문자열과 10진수를 더하면 문자화하여 concat)
+System.out.println("a" + '0'); // a0 (문자열. 아스키코드를 더해도 문자화하여 concat)
+
+다음은 에러가 발생되는 상황들이다.
+System.out.println('ab'); // 아스키화는 한 문자씩 해야 한다.
+System.out.println("a" * 2); // 파이썬과 다르게 문자열은 곱셈연산 지원X
+
+4. 출력
+System.out.print(); // '\n' 미포함
+System.out.println(); // '\n' 포함
+System.out.printf(); // '\n' 미포함, 출력서식(%d, %f, %c, %s 등) 사용 가능
