@@ -11,10 +11,12 @@ import java.util.*;
 문서화 주석
 */
 public class Class1 {
+    // 들여쓰기는 4칸, 줄바꿈은 8칸
     /*
     구현 주석
     */
     
+    // 변수는 윗부분에 모두 선언해 놓는다. 사용 직전에 선언하는 것이 아니다.
     // static 변수; public > default > protected > private
     public static T var;
     static T var;
