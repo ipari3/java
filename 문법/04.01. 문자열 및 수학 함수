@@ -46,5 +46,8 @@ Math.ceil(x); // 올림
 Math.floor(x); // 버림
 Math.sin(rad);
 Math.cos(rad);
-Math.toRadians(deg); // deg * Math.PI/180과 동일 (Radian 뒤에 s가 붙어있다.)
+Math.toDegrees(rad);
+Math.toRadians(deg);
 Math.random(); // 0 <= x < 1
+
+* 상수: Math.PI, Math.E
