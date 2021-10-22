@@ -44,6 +44,11 @@ do (cond) {
 System.out.print(); // '\n' 미포함
 System.out.println(); // '\n' 포함
 System.out.printf(); // '\n' 미포함, 출력서식(%d, %f, %c, %s 등) 사용 가능
+(예시)
+System.out.printf("%3$d %1$.2f %2$5.2f", a, b, c);
+- 3$은 3번째 인자라는 의미. 따라서 c a b 순으로 출력된다.
+- 5.2f는 총 5자리이고 소수점 2자리라는 의미.
+- 자바에서는 double도 %f를 쓴다. (%lf는 없다.)
 
 3. 따옴표
 작은따옴표는 문자, 큰따옴표는 문자열
