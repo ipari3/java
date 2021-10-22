@@ -17,16 +17,16 @@ public class Class1 {
     */
     
     // 변수는 윗부분에 모두 선언해 놓는다. 사용 직전에 선언하는 것이 아니다.
-    // static 변수; public > default > protected > private
+    // static 변수; public > protected > default > private
     public static T var;
-    static T var;
     protected static T var;
+    static T var;
     private static T var;
     
-    // 일반 변수; public > default > protected > private
+    // 일반 변수; public > protected > default > private
     public T var;
-    T var;
     protected T var;
+    T var;
     private T var;
     
     // 생성자
