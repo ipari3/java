@@ -6,7 +6,7 @@
 > 주석으로 경고했어도 실수를 하고 알아채지 못할 수 있는데, 어노테이션은 컴파일이 알아채고 그냥 넘어가지 않도록 한다.
 - 형태: @AnnotationName  
 어노테이션은 인터페이스와 비슷한 방식으로 정의되며, 이름도 똑같이 upper camel case로 짓는다.
-- 예시: @Override
+(예시) @Override
 ```
 public class SuperClass {
     public void introduceMyself() {
@@ -60,7 +60,7 @@ TYPE은 클래스, 인터페이스, 어노테이션 타입, 이넘 선언에 사
 java.lang.annoataion.RetentionPolicy에 Enum으로 선언되어 있으며, 종류는 CLASS(default), RUNTIME, SOURCE가 있다.
 - SOURCE: 소스 파일까지만 남아있다. 컴파일러에 의해 버려진다.
 - CLASS: 자바 바이트 코드(.class 파일)까지만 남아있다. 런타임에 VM에서 유지되지 않는다.
-- RUNTIME: 런타임에 VM에서도 유지된다. 따라서 reflective하게 읽을 수 있다.
+- RUNTIME: 런타임에 VM에서도 유지된다. 따라서 reflective하게 읽을 수 있다.  
 
 (예시) 다양한 커스텀 어노테이션 사용 사례
 ```
