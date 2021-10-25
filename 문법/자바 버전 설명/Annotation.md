@@ -64,6 +64,7 @@ java.lang.annoataion.RetentionPolicy에 Enum으로 선언되어 있으며, 종�
 - CLASS: 자바 바이트 코드(.class 파일)까지만 남아있다. 런타임에 VM에서 유지되지 않는다.
 - RUNTIME: 런타임에 VM에서도 유지된다. 따라서 reflective하게 읽을 수 있다.  
 
+## Annotation on Java Types
 (예시) 다양한 커스텀 어노테이션 사용 사례
 ```
 Forecast currentForecast = new @Interned Forecast();
