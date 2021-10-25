@@ -38,7 +38,7 @@ import java.lang.annoataion.RetentionPolicy;
 @Target({ElementType.FIELD, ElementType.CONSTRUCTOR})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface AnnotationName {
-    int elementName1();
+    int elementName1(); // 괄호 ()를 붙여준다.
     int elementName2() default 1; // default 값을 가진 parameter처럼 쓸 수 있다. 
 }
 
@@ -76,5 +76,25 @@ class MyForecast<T> implements @NonEmpty List<@ReadOnly T>
 > 예를 들어, 문자열을 리터럴 대입으로 선언하면 pool에 들어간다. 그리고 다른 변수에 동일하게 선언하면 pool에 있는 값을 사용한다.
 > 그런데 new String()으로 선언하면 pool과 상관없이 새로운 리터럴을 생성한다.
 > 여기서 intern 한다는 것은 new로 선언해도 pool에 값이 있는지 확인하여 있으면 사용하라는 것이다.
+
+## Repeating Annotation
+repeating 어노테이션은 여러 번 사용할 수 있다.
+repeating 어노테이션은 @Repeatable 어노테이션을 이용하여 선언한다.
+```
+import java.lang.annotation.Repeatable;
+
+// 선언
+@Repeatable(Schedules.class)
+public @interface Schedule {
+    String dayOfMonth() default "first";
+    String dayOfWeek() default "Mon";
+    int hour() default 12;
+}
+
+// 사용
+@Schedule(dayOfMonth="last")
+@Schedule(dayOfWeek="Fri", hour="23")
+public void doPeriodicCleanup() { ... }
+```
 
 [1]: https://github.com/ipari3/java/blob/main/%EB%AC%B8%EB%B2%95/%EC%9E%90%EB%B0%94%20%EB%B2%84%EC%A0%84%20%EC%84%A4%EB%AA%85/Build,%20Compile,%20Run.md
