@@ -51,13 +51,13 @@ public class ClassName {
     public ClassName() {}
 }
 ```
-**@Target**
+**@Target**  
 어노테이션을 적용할 대상을 @Target 어노테이션으로 지정할 수 있으며, 여러 개 지정할 수 있다.  
 적용 대상은 java.lang.annotation.ElementType에 Enum으로 선언되어 있으며,  
 종류는 ANNOTATION_TYPE, CONSTRUCTOR, FIELD, LOCAL_VARIABLE, METHOD, PACKAGE, PARAMETER, TYPE, TYPE_PARAMETER, TYPE_USE가 있다.  
-TYPE은 클래스, 인터페이스, 어노테이션 타입, 이넘 선언에 사용할 수 있고, ANNOTATION_TYPE은 어노테이션 타입 선언에만 사용할 수 있다.
-<br></br>
-**@Retention**
+TYPE은 클래스, 인터페이스, 어노테이션 타입, 이넘 선언에 사용할 수 있고, ANNOTATION_TYPE은 어노테이션 타입 선언에만 사용할 수 있다.  
+  
+**@Retention**  
 어노테이션 언제까지 유지할 것인지 @Retention 어노테이션으로 지정한다.  
 java.lang.annoataion.RetentionPolicy에 Enum으로 선언되어 있으며, 종류는 CLASS(default), RUNTIME, SOURCE가 있다.
 - SOURCE: 소스 파일까지만 남아있다. 컴파일러에 의해 버려진다.
