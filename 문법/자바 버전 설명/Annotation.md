@@ -5,7 +5,8 @@
 > 주석과 어노테이션이 대표적인 메타데이터이며, 어노테이션은 코드 동작에는 영향이 없지만 빌드나 실행에 영향을 준다.  
 > 주석으로 경고했어도 실수를 하고 알아채지 못할 수 있는데, 어노테이션은 컴파일이 알아채고 그냥 넘어가지 않도록 한다.
 - 형태: @AnnotationName  
-어노테이션은 인터페이스와 비슷한 방식으로 정의되며, 이름도 똑같이 upper camel case로 짓는다.
+어노테이션은 인터페이스와 비슷한 방식으로 정의되며, 이름도 똑같이 upper camel case로 짓는다.  
+  
 (예시) @Override
 ```
 public class SuperClass {
@@ -25,8 +26,9 @@ public class SubClass extends SuperClass {
 그 외에 @Deprecated는 호출을 막고, @SuppressWarnings는 워닝을 숨긴다.
 
 ## Pluggable Annotation
-Custom Annotation Processor를 작성할 수 있으며, 이는 코드에 plugged-in 될 수 있다. (기본 어노테이션은 객체 바로 위에 사용.)
+Custom Annotation Processor를 작성할 수 있으며, 이는 코드에 plugged-in 될 수 있다. (기본 어노테이션은 객체 바로 위에 사용.)  
 커스텀 어노테이션의 정의는 다음과 같으며, 애초에 @interface 어노테이션이 plugged-in 된 형태이다.  
+  
 (예시) 필드와 생성자에 적용하는 어노테이션 (필드는 전역 변수 혹은 멤버 변수라고도 한다.)
 ```
 import java.lang.annotation.ElementType;
