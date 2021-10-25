@@ -14,3 +14,6 @@ IntStream.range(0, 10).forEach((int value) -> System.out.println(value)); // 기
 IntStream.range(0, 10).forEach(value -> System.out.println(value)); // 파라미터 자료형 생략. 컴파일러가 추론 가능.
 IntStream.range(0, 10).forEach(System.out::println); // 메서드 참조 이용.
 ```
+람다식이 단 하나의 메소드만 호출하는 경우, 메소드 참조를 이용하면 매개변수를 명시하지 않아도 된다.  
+형식의 위의 예시대로 ::를 이용하며, 매개변수가 사라진다.  
+::의 좌측에는 클래스나 참조변수를 넣고 우측에는 메소드를 넣는다. (ClassName::methodName)
