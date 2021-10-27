@@ -1,3 +1,8 @@
+## 프로그래밍 기본 단위
+자바는 Main을 포함하여 모든 것을 클래스 형태로 구현한다. (C에서는 main 등을 함수로 구현한다.)
+(다만 코드 예시에서는 편의상 이를 무시하고 클래스로 묶지 않았다.)
+> 자바에서는 하나의 파일에 하나의 public 클래스만 작성하고, 클래스의 이름은 파일 이름과 동일하게 하여 관리를 용이하게 한다.
+
 ## 클래스 속성
 #### 상속 (Inheritance)
 기존의 클래스나 인터페이스로부터 속성과 동작을 가져오는 것.  
@@ -9,78 +14,65 @@
 - 단일상속: 수퍼클래스가 하나라는 뜻이다. 서브클래스는 여러 개일 수 있다.
 - 다중상속: 인터페이스는 여러 개 가져와서 사용할 수 있다.
 ```
-// 선언
-public class SuperClass {
-    public void method() { ... }
-}
-  
-// 인터페이스를 여러 개 상속받는 클래스.
-public Subclass extends SuperClass implements Interface1, Interface2 {
-    // 수퍼클래스의 메소드를 따로 구현할 필요가 없다.
-}
-```
-> 자바는 Main을 포함하여 모든 것을 클래스 형태로 구현한다.
-> 여기서는 편의상 이를 무시하고 클래스로 묶지 않았다.
-  
-서브클래스를 인스턴스화하면, 수퍼클래스부터 호출되고 서브클래스가 호출된다.
-```
-// 선언
+// 수퍼클래스 선언
 public class SuperClass {
     // 생성자 오버라이딩
     public SuperClass() {
         System.out.println("SUPER");
     }
+    
+    // 메소드 선언
+    public void method() { ... }
 }
-
-public class Subclass extends SuperClass {
+  
+// 인터페이스를 여러 개 상속받는 클래스 선언.
+public Subclass extends SuperClass implements Interface1, Interface2 {
     // 생성자 오버라이딩
     public Subclass() {
         System.out.println("SUB");
     }
+    
+    // 수퍼클래스의 메소드를 따로 구현할 필요가 없다.
 }
 
 // 호출
-new Sub(); // print: SUPER\n SUB \n
+new Sub(); // print: SUPER\n SUB \n (서브클래스를 인스턴스화하면, 수퍼클래스부터 호출되고 서브클래스가 호출된다.)
 ```
 > **생성자** (Constructor): 객체의 초기화를 담당하는 서브루틴.
 > 생성자 이름은 클래스 이름과 동일해야하며 리턴 타입을 명시하지 않는다. 또한 abstract, static, final, synchronized될 수 없다.
-> 즉, \[access modifier] ClassName(...) { ... }의 형태로만 존재한다. 접근제어자도 default이다.
-> 생성자를 작성하지 않으면, 매개변수와 내용이 비어있는 디폴트 생성자가 자동으로 생성된다.
-> (생성자를 하나라도 작성하면 디폴트 생성자는 생성되지 않는다.)
+> 즉, \[access modifier] ClassName(...) { ... }의 형태로 작성한다.
+> 생성자를 작성하지 않으면, 매개변수와 내용이 비어있는 생성자가 자동으로 생성된다. 접근제어자는 default이다.
 > 오버로딩이 가능하여 여러 생성자를 가질 수 있다.
   
-> **접근제어자** (Access modifier):
+> **접근제어자** (Access modifier): 객체의 scope를 제한한다.
 > - private: 해당 클래스 내에서만 접근 가능
 > - default: 해당 패키지 내에서만 접근 가능 (접근 제어자 설정하지 않은 경우이며, package 접근제한자라고도 한다.)
 > - protected: 해당 패키지 및 해당 클래스를 상속받은 외부 패키지의 클래스에서 접근 가능
 > - public: 모든 클래스에서 접근 가능
 > 
 > 최상위 클래스는 public이며, default도 가능하다. (protected와 private는 불가능)
-> - public: 외부 패키지로 노출
-> - default: 해당 패키지에서만 사용
-> 외부에 노출되지 않는 클래스는 만드는 의미가 없으므로 기본적으로 public을 사용한다.
-> 만약 파일 하나로 끝나는 프로그램이라면 default로도 충분하다.
-> 자바에서는 하나의 파일에 하나의 public 클래스만 작성하고, 클래스의 이름은 파일 이름과 동일하게 하여 관리를 용이하게 한다.
-> 
-> inner 클래스는 private나 protected 접근제어자를 달 수 있다. (inner 클래스는 클래스 내부의 클래스이다.)
+> - public: 외부 패키지로 노출 (외부에 노출되지 않는 클래스는 만드는 의미가 없으므로, 클래스는 기본적으로 public을 사용한다.)
+> - default: 해당 패키지에서만 사용 (만약 파일 하나로 끝나는 프로그램이라면 default로도 충분하다.)
+> inner 클래스는 클래스 내부에서 선언된 클래스를 말하며, private나 protected 접근제어자를 가질 수 있다.
   
-> **지시자**
-생성된 객체 자신의 주소를 참조하는 레퍼런스.
+> **지시자** (this 키워드): 객체 자신을 가리킨다. 정확히는 생성된 객체 자신의 주소를 참조하는 레퍼런스다.
+> 다음은 지시자가 필요한 상황이다. (private 변수를 위한 get, set 메소드)
+> ```
+> public class ClassName {
+>     private int memVar;
+>     
+>     // 값을 넣을 때는 주소를 이용해야 하므로 this를 사용한다.
+>     public void setMemVar(int memVar) {
+>         this.memVar = memVar;
+>     }
+>     
+>     // 값만 볼 때는 주소가 필요없다.
+>     public int getMemVar() {
+>         return memVar;
+>     }
+> }
+> ```
 
-(예시)
-public class ClassName {
-    private int memVar;
-    
-    // 값을 넣을 때는 주소를 이용해야 하므로 this를 사용한다.
-    public void setMemVar(int memVar) {
-        this.memVar = memVar;
-    }
-    
-    // 값만 볼 때는 주소가 필요없다.
-    public int getMemVar() {
-        return memVar;
-    }
-}
 #### 오버라이딩 (Overriding)
 서브클래스에서 수퍼클래스의 메소드를 재정의하는 것.  
 **@Override** 어노테이션을 사용하는 것이 권장되며, 메소드의 이름과 매개변수는 동일해야 한다. (리턴 타입은 다를 수 있다.)  
@@ -137,23 +129,39 @@ a.method(); // print: SUPER (권장되지 않음)
 - 만약 일반 메소드를 오버라이딩한 것이었다면, 초기화값인 우변의 인스턴스에 따라 Subclass의 메소드가 호출되었을 것이다.
 
 ## 키워드
+키워드는 접근제어자와 자료형 사이에 선언한다.  
+여러 개 사용하는 경우에는 순서에 영향을 받지 않지만, 일반적인 순서는 존재한다.
+- 필드: `@Annotation` `accessModifier` `static` `final` `trainsient` `volatile`
+- 메소드: `@Annotation` `accessModifier` `abstract` `static` `final` `synchronized` `native` `strictfp`
+> **필드** (field): 클래스 자체의 변수로, 메소드나 생성자 내부 변수인 *지역 변수*와 구분된다. **전역 변수**나 **멤버 변수**라고도 한다.
+> 기본 타입이나 참조 타입의 필드는 초기화하지 않아도 각 타입별 0 관련 값을 갖는다.
+> (지역 변수는 자동으로 초기화되지 않으며, 초기화하지 않고 사용하면 에러 발생) 
+
+#### final
+최종 결과라는 의미로, 수정이 불가하다.  
+- final 클래스: 상속 금지. 상속 시 에러 발생.
+- final 메소드: 재정의 및 오버라이딩 금지. @Override를 사용하지 않고 내용을 변경해도 에러 발생.
+- final 변수: 값 변경 금지.
+  - 기본 타입: 변수의 값이 정해지면 변경할 수 없다.
+  - 객체 타입: 클래스 등의 인스턴스를 받는 경우, 다른 인스턴스로 변경할 수 없다. 단, 인스턴스의 상태는 변경할 수 있다.
+  - 메소드 매개변수: 메소드의 매개변수에 final을 붙여 선언한 경우, 인자를 받으면 메소드 안에서 값을 변경할 수 없다.
+
 #### static
-클래스의 정적 멤버는 static 키워드로 선언되며, 인스턴스화하기 전에 존재하고 접근가능하다.  
+클래스의 정적 멤버는 static 키워드로 선언되며, 인스턴스화하기 전에 존재하고 접근가능하다. (물론 클래스의 멤버가 아니어도 static 키워드를 사용할 수 있다.)  
 가능한 정도가 아니라, 정적 멤버는 원칙적으로 *클래스를 통해서 호출*하는 것이 권장된다. (*인스턴스를 통한 정적 멤버의 호출*은 <ins>권장되지 않는다.</ins>)  
 메소드의 경우는 정적이면 오버라이딩할 수 없으며, 재정의는 하이딩으로 구현된다.
-물론 클래스의 멤버가 아니어도 사용할 수 있다.
 > **유틸리티 클래스**: 정적 메소드만 가지는 클래스.
 > 변수가 없으며 이를 상태가 없다고 말하며, 기능이 비슷한 메소드를 모아놓는다. (상수를 포함할 수도 있다.)
 > 보통 인스턴스화와 상속이 불가능하도록 구현한다.
 > ```
 > // 상속할 수 없도록 final 키워드를 적용한다.
 > public final class UtilityClass {
->     // 인스턴스화할 수 없도록 생성자를 private으로 만든다.
+>     // 인스턴스화할 수 없도록 생성자를 private으로 만든다. (클래스 외부에서 생성자 접근 불가)
 >     private UtilityClass() {
 >         throw new UnsupportedOperationException(); // 클래스 내부에서 호출되어도 예외 발생
 >     }
 >     
->     // 인스턴스화할 수 없으므로 메소드들은 정적이어야 한다.
+>     // 인스턴스화할 수 없으므로 메소드들은 정적이어야 접근 가능하다.
 >     public static void method () { ... }
 > }
 > ```
@@ -162,14 +170,15 @@ a.method(); // print: SUPER (권장되지 않음)
 
 #### abstract
 틀만 만들고 내용은 구현하지 않는 것.
-- 추상 메소드: abstract가 붙은 메소드이며, 내용을 구현하면 안된다. ({} 없이 ();로 선언을 끝낸다.)   
-단순히 내용을 {}로 비워놓을 수도 있지만 가독성과 오타 방지등을 위해 abstract를 이용하는 것이 좋다.
-  - 추상 클래스: abstract가 붙은 클래스이며, 추상 메소드를 하나라도 가지면 abstract를 붙여야 한다.  
-  추상 메소드를 가지고 있지 않아도 abstract를 적용할 수 있지만, 의미가 없으며 가독성을 위해 권장되지 않는다.
+- 추상 메소드: abstract가 붙은 메소드이며, 내용을 구현하면 안된다.
+  단순히 내용을 {}로 비워놓을 수도 있지만 가독성과 오타 방지등을 위해 abstract를 이용하는 것이 좋다.
+- 추상 클래스: abstract가 붙은 클래스이며, 추상 메소드를 하나라도 가지면 abstract를 붙여야 한다.  
+  추상 메소드를 가지고 있지 않아도 abstract를 적용할 수 있지만, 의도를 오해할 수 있으므로 권장되지 않는다.
     - 구현 강제: 추상 메소드는 추상 클래스를 상속받는 클래스에서 구현해야만 한다.  
     상속받은 클래스가 추상 클래스면 구현을 미루어도 된다.
     - 인스턴스화 불가능: 추상 클래스는 인스턴스화할 수 없다.  
-    그러나 이것만이 목적이라면 abstract 보다는 protected를 이용하는 것이 낫다.
+    그러나 이것만이 목적이라면 의미상 abstract 보다는 private 생성자를 이용하는 것이 낫다.
+    private은 클래스 외부에서 접근할 수 없으므로 인스턴스를 생성할 수 없다.
 ```
 public abstract class SuperClass {
     public abstract void method();
@@ -181,21 +190,8 @@ public abstract class MidClass extends SuperClass {
 }
 
 public class Subclass extends MidClass {
+    // 추상 클래스가 아니므로 추상 메소드를 무조건 구현해야 한다.
     @Override
-    public void method() { ... }
-}
-```
-
-- **final**: 최종 결과라는 의미로, 수정이 불가하다.  
-  - final 클래스: 상속 금지. 상속 시 에러 발생.
-  - final 메소드: 재정의 및 오버라이딩 금지. @Override를 사용하지 않고 내용을 변경해도 에러 발생.
-```
-public class SuperClass {
-    public final void method() { ... }
-}
-
-public class Subclass extends SuperClass {
-    // 재정의 불가능
-    // public final void method() { ... }
+    public void method() { ... } // 더 이상 추상 메소드가 아니므로 abstract는 붙이지 않는다.
 }
 ```
