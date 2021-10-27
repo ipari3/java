@@ -3,6 +3,12 @@
 - 인터페이스의 정체성은 다중상속이 가능한 [추상 클래스][1]이며, 원래는 상수와 추상 메소드로만 구성될 수 있었다.
 - 그러다 JAVA SE 8부터 필요에 의해 디폴트 메소드와 정적 메소드가 추가되었다.
 
+멤버들은 암시적으로(implicitly) 다음과 같이 선언된다. (즉, 다음을 생략할 수 있다.)
+- 상수: public static final
+- 추상 메소드: public abstract (클래스에서는 기본 접근제어자가 default이며, abstract를 생략하면 안된다.)
+- 디폴트 메소드: public
+- 정적 메소드: public
+
 ## Before JAVA SE 8
 인터페이스는 원래 상수와 추상 메소드만 선언할 수 있었으며, 추상 클래스의 모습을 가지고 있었다.  
 따라서 내용은 다른 클래스(구현 클래스)에서 구현되며, 키워드도 **implements**를 사용한다.  
@@ -19,12 +25,10 @@
 ```
 public interface InterfaceName {
     // 상수
-    public static final double PI = 3.14;
-    double E = 2.718; // 상수임을 명시하지 않아도 상수다. 변수명은 여전히 upper snake case으로 짓는다.
+    double PI = 3.14; // public static final은 자동으로 붙으며, 상수이므로 변수명은 upper snake case으로 짓는다.
     
     // 추상 메소드
-    public abstract void show(); // 내용은 구현하지 않는다.
-    public void sleep(); // 인터페이스에서는 abstract를 생략 가능하다.
+    void show(); // 내용은 구현하지 않으며, public abstract가 자동으로 붙는다.
 }
 ```
 
@@ -45,11 +49,10 @@ public interface InterfaceName {
 ```
 public interface InterfaceName {
     // 디폴트 메소드
-    public default void show() { ... }
-    default void sleep() { ... } // public이 디폴트 메소드의 디폴트 접근자이며 생략 가능하다.
+    default void show() { ... } // public이 자동으로 붙는다. default는 접근제어자가 아니라 키워드다.
     
     // 정적 메소드
-    public static void stop() { ... }
+    static void sleep() { ... } // public이 자동으로 붙는다.
 }
 ```
 
