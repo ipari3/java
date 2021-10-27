@@ -46,7 +46,7 @@ public interface InterfaceName {
 public interface InterfaceName {
     // 디폴트 메소드
     public default void show() { ... }
-    default void sleep() { ... } // public이 디폴트 접근자이며 생략 가능하다.
+    default void sleep() { ... } // public이 디폴트 메소드의 디폴트 접근자이며 생략 가능하다.
     
     // 정적 메소드
     public static void stop() { ... }
