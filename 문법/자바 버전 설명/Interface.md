@@ -23,15 +23,6 @@
 
 #### 추상 메소드
 틀만 만들고 내용은 구현해놓지 않는다. (추상 클래스의 추상 메소드와 동일)
-```
-public interface InterfaceName {
-    // 상수
-    double PI = 3.14; // public static final은 자동으로 붙으며, 상수이므로 변수명은 upper snake case으로 짓는다.
-    
-    // 추상 메소드
-    void show(); // 내용은 구현하지 않으며, public abstract가 자동으로 붙는다.
-}
-```
 
 ## From JAVA SE 8
 호환성이나 생산성 등을 위해 디폴트메소드와 정적메소드가 추가되었다.
@@ -49,11 +40,17 @@ public interface InterfaceName {
 구현 클래스에서 재정의할 수 있지만, 오버라이딩은 불가능하고 [하이딩][1]이 이루어진다. (인터페이스의 **하이딩**은 <ins>권장되지 않는다.</ins>)
 ```
 public interface InterfaceName {
+    // 상수
+    double PI = 3.14; // public static final이 자동으로 붙으며, 변수명은 상수에 맞게 짓는다.
+    
+    // 추상 메소드
+    void show(); // 내용은 구현하지 않으며, public abstract가 자동으로 붙는다.
+
     // 디폴트 메소드
-    default void show() { ... } // public이 자동으로 붙는다. default는 접근제어자가 아니라 키워드다.
+    default void sleep() { ... } // public이 자동으로 붙는다. default는 접근제어자가 아니라 키워드다.
     
     // 정적 메소드
-    static void sleep() { ... } // public이 자동으로 붙는다.
+    static void stop() { ... } // public이 자동으로 붙는다.
 }
 ```
 
