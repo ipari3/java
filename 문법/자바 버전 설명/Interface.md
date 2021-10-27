@@ -5,9 +5,10 @@
 
 멤버들은 암시적으로(implicitly) 다음과 같이 선언된다. (즉, 다음을 생략할 수 있다.)
 - 상수: public static final
-- 추상 메소드: public abstract (클래스에서는 기본 접근제어자가 default이며, abstract를 생략하면 안된다.)
+- 추상 메소드: public abstract
 - 디폴트 메소드: public
 - 정적 메소드: public
+> 클래스에서는 추상 메소드 선언 시, 기본 접근제어자가 default이며 abstract를 생략하면 안된다.
 
 ## Before JAVA SE 8
 인터페이스는 원래 상수와 추상 메소드만 선언할 수 있었으며, 추상 클래스의 모습을 가지고 있었다.  
