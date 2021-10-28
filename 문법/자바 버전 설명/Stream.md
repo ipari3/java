@@ -2,7 +2,7 @@
 Stream 인터페이스는 객체들의 시퀀스에 다양한 메소드를 적용하는 파이프라인을 제공한다.
 Stream, IntStream, LongStream, DoubleStream은 java.util.stream 패키지에 들어있다.
 ```
-
+import java.util.stream.Stream;
 ```
 
 ## 스트림 생성
