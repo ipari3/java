@@ -87,4 +87,4 @@ func.method("abc") // print: abc
 기본적인 함수형 인터페이스가 제공되며, 직접 작성하는 경우는 거의 없다.
 제공되는 함수형 인터페이스로는 Predicate, Consumer, Supplier, Function<T,R>, Comparator, Runnable, Callable 등이 있다.
 
-[1]: https://github.com/ipari3/java/blob/main/%EB%AC%B8%EB%B2%95/%EC%9E%90%EB%B0%94%20%EB%B2%84%EC%A0%84%20%EC%84%A4%EB%AA%85/Class.md
+[1]: https://github.com/ipari3/java/blob/main/%EB%AC%B8%EB%B2%95/%EC%9E%90%EB%B0%94%20%EB%B2%84%EC%A0%84%20%EC%84%A4%EB%AA%85/Class.md#abstract
