@@ -1,24 +1,22 @@
 ## Immutable vs. Unmodifiable
-immutable은 불변이다. 어떤 방법으로도 값이 변하지 않는다.  
-unmodifiable은 변경 불가다. 값을 변경할 수 없다. 하지만 값이 변할 수는 있다.
+#### 예시
+**Immutable**은 불변이다. 어떤 방법으로도 값이 변하지 않는다.  
+**Unmodifiable**은 변경 불가다. 값이 변하게 할 수 없다. 하지만 값이 변할 수는 있다.  
 다음의 `ImmutableList` 클래스와 `Collections.unmodifiableList` 메소드를 비교해보자.
 ```
-// 임포트
 import com.google.common.collect.ImmutableList;
 import Collections;
 
-// (list0 생성 완료)
 ImmutableList<String> list1 = ImmutableList.copyOf(list0);
 Collection<String> list2 = Collections.unmodifiableList(list0);
 ```
-- ImmutableList: list1은 원소를 추가, 수정, 제거할 수 없다. 아무런 변경이 발생할 수 없다.
-- unmodifiableList: list2는 원소를 추가, 수정, 제거할 수 없다. 그러나 list0이 변하면 list2도 변한다.  
-`list0 = Collections.unmodifiableList(list0);`와 같이 원본 자체를 변경 불가로 만들 수도 있겠지만,  
-이것이 레퍼런스를 통하는 등의 모든 변경을 막을 수 있을지 확실하지 않으며, 문맥적으로 맞지 않고 메소드의 의도와도 맞지 않다.
-
+- `ImmutableList`: list1은 원소를 추가, 수정, 제거할 수 없다. 아무런 변경이 발생할 수 없다.
+- `unmodifiableList`: list2는 원소를 추가, 수정, 제거할 수 없다. 그러나 list0이 변하면 list2도 변한다.  
+`list0 = Collections.unmodifiableList(list0);`처럼 원본 자체를 unmodifiable로 만드는 것은 메소드의 의도와 맞지 않다.
+#### 객체의 목적
 두 경우 모두 read-only라는 공통점이 있다. 그러나 세부 의미에서 차이가 있다.
-ImmutableList의 목적은 불변이 보장된 리스트를 얻는 것이고, 이것이 read-only와 일맥상통한 것이다.  
-반면 unmodifiableList는 목적 자체가 read-only다. 서브리스트를 읽되, 원본에 영향을 주지 않을 것을 보장해준다.  
+`ImmutableList`의 목적은 불변이 보장된 리스트를 얻는 것이고, 이것이 read-only가 되었을 뿐이다.  
+반면 `unmodifiableList`는 목적 자체가 read-only다. 서브리스트를 읽되, 원본에 영향을 주지 않을 것을 보장해준다.  
 unmodifiableList 코드의 주석에는 비용이 클 수 있는 리스트 복사를 피하면서 서브리스트 읽는 것이 목적이라고 명시되어 있다.  
 > 얕은 불변성(shallow immutability): unmodifiableList 같은 경우는 컬렉션을 래핑(wrapping)한다고 하고,
 > 해당 컬렉션이 변하면 래핑한 컬렉션도 변하는 것을 얕은 불변성이라고 한다.
