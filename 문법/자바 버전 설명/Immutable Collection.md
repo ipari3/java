@@ -18,9 +18,9 @@ Collection<String> list2 = Collections.unmodifiableList(list0);
 두 경우 모두 read-only라는 공통점이 있다. 그러나 세부 의미에서 차이가 있다.  
 `ImmutableList`의 목적은 불변이 보장된 리스트를 얻는 것이고, 이것이 read-only가 되었을 뿐이다.  
 반면 `unmodifiableList`는 목적 자체가 read-only다. 서브리스트를 읽되, 원본에 영향을 주지 않을 것을 보장해준다.  
-unmodifiableList 코드의 주석에는 비용이 클 수 있는 리스트 복사를 피하면서 서브리스트 읽는 것이 목적이라고 명시되어 있다.  
+(unmodifiableList 코드의 주석에는 비용이 클 수 있는 리스트 복사를 피하면서 서브리스트 읽는 것이 목적이라고 명시되어 있다.)  
 > 얕은 불변성(shallow immutability): unmodifiableList는 컬렉션을 래핑(wrapping)한다.  
-> 해당 컬렉션이 변하면 래핑한 컬렉션도 변하는데, 이것을 얕은 불변성이라고 한다.
+> 해당 컬렉션이 변하면 래핑한 컬렉션도 변하는데, 이런 특징을 얕은 불변성이라고 한다.
 
 #### 대략적인 결론
 - 의미: 불변의 읽기전용 리스트를 원하면 `ImmutableList`를 쓰고, 원본 보존이 보장된 읽기전용 리스트를 원하면 `unmodifiableList`를 쓴다.
