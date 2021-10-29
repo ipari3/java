@@ -41,7 +41,7 @@ Collection<String> list2 = Collections.unmodifiableList(list0);
 서브클래스로는 `ImmutableList`, `ImmutableMultiset`, `ImmutableSet`가 있다.  
 Collection과는 다르게 ImmutableCollection은 타입으로 직접 사용하지 않는 것이 좋다.
 > **Multiset**은 파이썬의 Counter처럼 각 항목의 개수까지 저장한다.  
-> 다만 파이썬의 카운터는 항목과 개수가 key-value의 관계로 value를 직접 증가시켜서 카운팅을 하지만,  
+> 다만 파이썬의 카운터는 항목과 개수가 key-value의 관계로 value를 직접 증가시켜서 카운팅하,  
 > 자바의 멀티셋은 항목을 추가하거나 제거하면 자동으로 카운팅을 해준다.
 
 #### ImmutableList 메소드
