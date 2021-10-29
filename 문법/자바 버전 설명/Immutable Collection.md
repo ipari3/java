@@ -34,7 +34,7 @@ unmodifiableList 코드의 주석에는 비용이 클 수 있는 리스트 복�
 - I/O utils, Concurrency utils
 - Caching, Hashing
 그 외에 아파치, 잭슨, 잭스비, 모키토, 어썰트J, 하이버네이트, SLF4J, Log4J2 등의 라이브러리가 널리 사용된다.  
-(for further information, see [this external page][1])
+([외부 링크에서 ][1])
 
 ## ImmutableCollection
 서브클래스로는 `ImmutableList`, `ImmutableMultiset`, `ImmutableSet`가 있다.
@@ -48,8 +48,8 @@ Collection과는 다르게 ImmutableCollection은 타입으로 직접 사용하�
 - contains, equals, indexOf, lastIndexOf
 - forEach, iterator, listIterator, spliterator
 - subList, reverse, sortedCopyOf
-> asList는 Deprecated된다. ImmutableList는 List 인터페이스를 구현한 클래스이며, asList는 this를 반환할 뿐이다.  
-> add, addAll, remove, replaceAll은 물론이고 set과 sort는 모두 Deprecated된다. 불변이어야 하기 때문이다.  
+> - asList는 Deprecated된다. ImmutableList는 List 인터페이스를 구현한 클래스이며, asList는 this를 반환할 뿐이다.  
+> - add, addAll, remove, replaceAll은 물론이고 set과 sort는 모두 Deprecated된다. 불변이어야 하기 때문이다.  
 > (reverse는 원본을 거꾸로 만드는 것이 아니라, 그러한 view를 반환하는 것이므로 가능하다.)
 
 
