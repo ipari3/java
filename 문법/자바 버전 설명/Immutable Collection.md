@@ -37,7 +37,7 @@ unmodifiableList 코드의 주석에는 비용이 클 수 있는 리스트 복�
 ([외부 링크에서 더 보기][1])
 
 ## ImmutableCollection
-서브클래스로는 `ImmutableList`, `ImmutableMultiset`, `ImmutableSet`가 있다.
+서브클래스로는 `ImmutableList`, `ImmutableMultiset`, `ImmutableSet`가 있다.  
 Collection과는 다르게 ImmutableCollection은 타입으로 직접 사용하지 않는 것이 좋다.
 > **Multiset**은 파이썬의 Counter처럼 각 항목의 개수까지 저장한다.  
 > 다만 파이썬의 카운터는 항목과 개수가 key-value의 관계로 value를 직접 증가시켜서 카운팅을 하지만,  
