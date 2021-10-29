@@ -14,7 +14,7 @@ Collection<String> list2 = Collections.unmodifiableList(list0);
 - `unmodifiableList`: list2는 원소를 추가, 수정, 제거할 수 없다. 그러나 list0이 변하면 list2도 변한다.  
 `list0 = Collections.unmodifiableList(list0);`처럼 원본 자체를 unmodifiable로 만드는 것은 메소드의 의도와 맞지 않다.
 #### 객체의 목적
-두 경우 모두 read-only라는 공통점이 있다. 그러나 세부 의미에서 차이가 있다.
+두 경우 모두 read-only라는 공통점이 있다. 그러나 세부 의미에서 차이가 있다.  
 `ImmutableList`의 목적은 불변이 보장된 리스트를 얻는 것이고, 이것이 read-only가 되었을 뿐이다.  
 반면 `unmodifiableList`는 목적 자체가 read-only다. 서브리스트를 읽되, 원본에 영향을 주지 않을 것을 보장해준다.  
 unmodifiableList 코드의 주석에는 비용이 클 수 있는 리스트 복사를 피하면서 서브리스트 읽는 것이 목적이라고 명시되어 있다.  
