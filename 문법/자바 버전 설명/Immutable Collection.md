@@ -34,7 +34,7 @@ unmodifiableList 코드의 주석에는 비용이 클 수 있는 리스트 복�
 - I/O utils, Concurrency utils
 - Caching, Hashing
 그 외에 아파치, 잭슨, 잭스비, 모키토, 어썰트J, 하이버네이트, SLF4J, Log4J2 등의 라이브러리가 널리 사용된다.  
-([외부 링크에서 ][1])
+([외부 링크에서 더 보기][1])
 
 ## ImmutableCollection
 서브클래스로는 `ImmutableList`, `ImmutableMultiset`, `ImmutableSet`가 있다.
