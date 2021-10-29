@@ -49,8 +49,8 @@ Collection과는 다르게 ImmutableCollection은 타입으로 직접 사용하�
 - contains, equals, indexOf, lastIndexOf
 - forEach, iterator, listIterator, spliterator
 - subList, reverse, sortedCopyOf
-> - asList는 Deprecated된다. ImmutableList는 List 인터페이스를 구현한 클래스이며, asList는 this를 반환할 뿐이다.  
-> - add, addAll, remove, replaceAll은 물론이고 set과 sort는 모두 Deprecated된다. 불변이어야 하기 때문이다.  
+> - asList는 <ins>Deprecated</ins>된다. ImmutableList는 List 인터페이스를 구현한 클래스이며, asList는 this를 반환할 뿐이다.  
+> - add, addAll, remove, replaceAll은 물론이고 set과 sort는 모두 <ins>Deprecated</ins>된다. 불변이어야 하기 때문이다.  
 > (reverse는 원본을 거꾸로 만드는 것이 아니라, 그러한 view를 반환하는 것이므로 가능하다.)
 
 
