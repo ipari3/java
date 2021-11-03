@@ -6,7 +6,6 @@ null은 의도하고 사용할 수도 있지만, 의도치 않게 값이 들어�
   - 기존: null과 non-null (값이 없음, 값이 있음)
   - Optional: non-null without value와 non-null with value  
   non-null로만 나타낼 수 있다. null이 non-null without value로 대체된다.
-
 #### Optional\<T>
 옵셔널은 다이아몬드 연산자에 타입을 지정하여 사용한다. 제네릭도 가능하다.  
 기본형에 대응하는 `OptionalInt`, `OptionalLong`, `OptionalDouble`도 제공된다.
@@ -83,6 +82,7 @@ opt.orElseGet(String::new); // opt가 empty일 때만 문자열을 생성한다.
 Optional.ofNullable(str).orElseThrow(); // NoSuchElementException을 던진다.
 Optional.ofNullable(str).orElseThrow(IllegalArgumentException::new); // 예외 생성자로 직접 지정할 수 있다.
 ```
+
 ## 옵셔널 연산
 #### toString
 non-empty 문자열 표현을 반환한다.
@@ -99,6 +99,22 @@ opt1.equals(opt2); // 옵셔널의 값이 아닌 옵셔널을 인자로 넣는�
 > **identity-sensitive 연산**:  reference equality (==), identity hash code, synchronization
 #### filter, map, flatMap
 [스트림의 연산][1]과 동일하다.
+
+## 주의 사항
+#### `Optional`과 `null`은 함께 쓰지 않는다.
+Optional.empty()는 null을 대체한다. 따라서 Optional은 null과 함께 쓸 이유가 없다.  
+비교도 isPresent, equals 등을 이용한다.
+#### `Optional`은 매개변수에 사용하지 않는다.
+매개변수를 받지 않는 경우를 생각하여 옵셔널 매개변수로 선언하지 않는다.  
+이는 오버로딩으로 구현할 수 있다. 그렇지 않으면 안쓰는 매개변수에 굳이 Optional.empty()를 넣어서 호출해야 한다.
+```
+// 잘못된 선언
+public void f(String a, Optional<String> b) { ... }
+
+// 옳은 선언
+void f(String a) { ... }
+void f(String a, String b) { ... }
+```  
 
 
 [1]: https://github.com/ipari3/java/blob/main/%EB%AC%B8%EB%B2%95/%EC%9E%90%EB%B0%94%20%EB%B2%84%EC%A0%84%20%EC%84%A4%EB%AA%85/Stream.md#%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EC%97%B0%EC%82%B0
