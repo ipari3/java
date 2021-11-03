@@ -95,7 +95,7 @@ non-empty 문자열 표현을 반환한다.
 ```
 opt1.equals(opt2); // 옵셔널의 값이 아닌 옵셔널을 인자로 넣는다.
 ```
-빈 옵셔널인지 판단할 때도 `isPresent()`를 사용한다. (` == Optional.empty()` 처럼 비교하지 않는다.)
+빈 옵셔널인지 판단할 때도 `opt.isPresent()`를 사용한다. (`opt == Optional.empty()` 처럼 비교하지 않는다.)
 > **identity-sensitive 연산**:  reference equality (==), identity hash code, synchronization
 #### filter, map, flatMap
 [스트림의 연산][1]과 동일하다.
