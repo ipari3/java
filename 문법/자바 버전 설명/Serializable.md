@@ -22,15 +22,34 @@ public class Employee implements java.io.Serializable {
 직렬화는 `ObjectOutputStream` 클래스로 구현한다.  
 직렬화 결과를 파일로 저장할 때, 표준 확장자는 **.ser**이다.
 ```
+import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 try (
-    FileOutputStream fout = new FileOutputStream("file.ser");
-    ObjectOutputStream out = new ObjectOutputStream(fout);
+    FileOutputStream fileOut = new FileOutputStream("file.ser");
+    ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
 ) {
-    ...
-    out.writeObject(list);
-    out.flush();
+    objOut.writeObject(list);
+} catch (IOException e) {
+    return null;
 }
 ```
-> **try-with-resources**: try( ... )의 괄호 안에 객체를 선언하면, try 문을 벗어날 때 자원을 자동으로 해제해준다.
+> [**try-with-resources**][1]
+#### deserialize
+역직렬화는 `ObjectInputStream` 클래스로 구현한다.
+```
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+
+Employee employee = null; // scope을 고려하면 try 외부에서 선언하는 것이 옳다.
+try (
+    FileInputStream fileIn = new FileInputStream("/tmp/file.ser");
+    ObjectInputStream objIn = new ObjectInputStream(fileIn);
+) {
+    employee = (Employee) objIn.readObject();
+} catch
+    return null;
+}
+```
+
+[1]: https://github.com/ipari3/java/blob/main/%EB%AC%B8%EB%B2%95/%EC%9E%90%EB%B0%94%20%EB%B2%84%EC%A0%84%20%EC%84%A4%EB%AA%85/AutoCloseable.md#try-with-resources
