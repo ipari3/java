@@ -1,1 +1,104 @@
+## null과 Optional
+null은 값이 없는 것을 나타내며, true도 false도 아니다.  
+null은 의도하고 사용할 수도 있지만, 의도치 않게 값이 들어가지 않은 경우일 수도 있다.  
+의도치 않은 null은 다양한 오류를 만들어왔고, null은 기피 대상이 되었다.  
 
+Optional은 null을 대체할 수 있는 클래스이다.
+기존에는 값이 없는 상태와 있는 상태인 null과 non-null이 존재했는데,  
+Optional을 이용하면 non-null로만 나타낼 수 있으며, 이는 non-null without value와 non-null with value이다.  
+null이 non-null without value로 대체되는 것이다.
+
+#### Optional\<T>
+옵셔널은 다이아몬드 연산자에 타입을 지정하여 사용한다. 제네릭도 가능하다.  
+기본형에 대응하는 `OptionalInt`, `OptionalLong`, `OptionalDouble`도 제공된다.
+
+## Present or Empty
+`isPresent`와 `isEmpty`는 옵셔널 인스턴스가 값을 가지는지 여부를 반환한다.
+```
+Optional<String> opt = Optional.of("abc");
+assertTrue(opt.isPresent());
+assertFalse(opt.isEmpty());
+
+opt = Optional.ofNullable(null);
+assertTrue(opt.isEmpty());
+```
+#### ifPresent
+람다식에서 옵셔널 인스턴스의 메소드로 사용할 수 있다.
+```
+opt.ifPresent(x -> f(x));
+opt.ifPresent(this::f); // 메소드 하나를 사용하므로 메소드 레퍼런스를 이용할 수 있다.
+
+opt.ifPresent(str -> System.out.println(str.length())); // 메소드가 둘이므로 메소드 레퍼런스를 사용할 수 없다.
+```
+`ifPresentOrElse`는 present가 아닌 경우의 로직을 두 번째 인자로 받는다.
+
+## 옵셔널 생성
+#### 빈 옵셔널
+빈 옵셔널은 null을 대체한다.
+```
+Optional<String> opt = Optional.empty();
+```
+#### 기본형(Primitive)
+기본형은 int, long, double에 해당하는 `OptionalInt`, `OptionalLong`, `OptionalDouble`이 제공된다.
+```
+OptionalInt opt = OptionalInt.of(0);
+OptionalInt stream = IntStream.of(1, 2, 3);
+```
+#### 래퍼 타입
+- `of`: non-null 값을 받는다.
+- `ofNullable`: null 값을 받으면 빈 옵셔널 `Optional.empty()`를 반환한다.
+```
+Optional<String> opt1 = Optional.of(str); // str이 null이면 예외를 던짐
+Optional<String> opt2 = Optional.ofNullable(str); // str이 null이면 빈 옵셔널 반환
+```
+ofNullable이 null 값을 받으면 빈 옵셔널 대신 반환할 옵셔널을 지정할 수 있다.  
+null을 받을 때의 값이므로, 당연히 of와는 사용하지 않는다.  
+정확히는 옵셔널이 present가 아닐 때 반환할 옵셔널을 지정하는 것이다.
+```
+opt2.or(Optional.of("def"));
+```
+
+## 옵셔널 값
+- `get`: 옵셔널이 present면 값을 반환한다. empty면 예외를 던진다.
+- `hashCode`: 옵셔널의 값의 해시코드를 반환한다. empty면 0을 반환한다.
+```
+opt.get(); // empty면 예외 발생
+opt.hashCode(): empty면 0 반환
+```
+다음 메소드들은 옵셔널이 present가 아닐 때 반환할 값을 지정한다. present이면 옵셔널의 값을 반환한다. 
+- `orElse`: 인자로 값을 받는다. 그런데 isPresent일 때도 디폴트값이 생성되어 성능이 좋지 않다. (따라서 권장되지 않는다.)
+- `orElseGet`: 인자로 Supplier 함수형 인터페이스를 받는다. isPresent일 때는 디폴트값을 생성하지 않는다.
+```
+Optional.ofNullable(str).orElse("def"); // 값을 받는다.
+Optional.ofNullable(str).orElseGet(() -> "def"); // Supplier 함수형 인터페이스를 받는다.
+
+opt.orElse(getDefault()); // isPresent 여부와 상관없이 getDefault의 내용이 수행된다.
+opt.orElseGet(this::getDefault); // isPresent가 아닐 때만 getDefault를 수행한다.
+
+opt.orElse(new String()); // 항상 새로운 문자열을 생성한다.
+opt.orElseGet(String::new); // opt가 empty일 때만 문자열을 생성한다.
+```
+빈 옵셔널일 때, 디폴트값이 아닌 예외를 던지게 할 수도 있다.
+```
+Optional.ofNullable(str).orElseThrow(); // NoSuchElementException을 던진다.
+Optional.ofNullable(str).orElseThrow(IllegalArgumentException::new); // 예외 생성자로 직접 지정할 수 있다.
+```
+## 옵셔널 연산
+#### toString
+non-empty 문자열 표현을 반환한다.
+#### stream
+옵셔널의 값만을 갖는 스트림을 반환한다.  
+빈 옵셔널이면 빈 스트림을 반환한다.
+#### equals
+옵셔널은 `==` 같은 identity-sensitive 연산과 사용하지 않는다.  
+`==`은 equals로 대체한다.
+```
+opt1.equals(opt2); // 옵셔널의 값이 아닌 옵셔널을 인자로 넣는다.
+```
+빈 옵셔널인지 판단할 때도 `isPresent()`를 사용한다. (` == Optional.empty()` 처럼 비교하지 않는다.)
+> **identity-sensitive 연산**:  reference equality (==), identity hash code, synchronization
+#### filter, map, flatMap
+[스트림의 연산][1]과 동일하다.
+
+
+[1]: https://github.com/ipari3/java/blob/main/%EB%AC%B8%EB%B2%95/%EC%9E%90%EB%B0%94%20%EB%B2%84%EC%A0%84%20%EC%84%A4%EB%AA%85/Stream.md#%EC%8A%A4%ED%8A%B8%EB%A6%BC-%EC%97%B0%EC%82%B0
