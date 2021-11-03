@@ -1,12 +1,11 @@
 ## null과 Optional
-null은 값이 없는 것을 나타내며, true도 false도 아니다.  
+- null: 값이 없는 것. true도 false도 아니다.    
 null은 의도하고 사용할 수도 있지만, 의도치 않게 값이 들어가지 않은 경우일 수도 있다.  
 의도치 않은 null은 다양한 오류를 만들어왔고, null은 기피 대상이 되었다.  
-
-Optional은 null을 대체할 수 있는 클래스이다.
-기존에는 값이 없는 상태와 있는 상태인 null과 non-null이 존재했는데,  
-Optional을 이용하면 non-null로만 나타낼 수 있으며, 이는 non-null without value와 non-null with value이다.  
-null이 non-null without value로 대체되는 것이다.
+- Optional: null을 대체할 수 있는 클래스이다.
+  - 기존: null과 non-null (값이 없음, 값이 있음)
+  - Optional: non-null without value와 non-null with value  
+  non-null로만 나타낼 수 있다. null이 non-null without value로 대체된다.
 
 #### Optional\<T>
 옵셔널은 다이아몬드 연산자에 타입을 지정하여 사용한다. 제네릭도 가능하다.  
@@ -51,6 +50,7 @@ OptionalInt stream = IntStream.of(1, 2, 3);
 Optional<String> opt1 = Optional.of(str); // str이 null이면 예외를 던짐
 Optional<String> opt2 = Optional.ofNullable(str); // str이 null이면 빈 옵셔널 반환
 ```
+###### or
 ofNullable이 null 값을 받으면 빈 옵셔널 대신 반환할 옵셔널을 지정할 수 있다.  
 null을 받을 때의 값이므로, 당연히 of와는 사용하지 않는다.  
 정확히는 옵셔널이 present가 아닐 때 반환할 옵셔널을 지정하는 것이다.
