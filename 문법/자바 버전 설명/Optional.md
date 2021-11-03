@@ -50,7 +50,7 @@ OptionalInt stream = IntStream.of(1, 2, 3);
 Optional<String> opt1 = Optional.of(str); // str이 null이면 예외를 던짐
 Optional<String> opt2 = Optional.ofNullable(str); // str이 null이면 빈 옵셔널 반환
 ```
-###### or
+- `or`
 ofNullable이 null 값을 받으면 빈 옵셔널 대신 반환할 옵셔널을 지정할 수 있다.  
 null을 받을 때의 값이므로, 당연히 of와는 사용하지 않는다.  
 정확히는 옵셔널이 present가 아닐 때 반환할 옵셔널을 지정하는 것이다.
