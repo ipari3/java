@@ -6,6 +6,11 @@ import java.util.stream.Stream;
 ```
 
 ## 스트림 생성
+#### 빈(Empty) 스트림
+원소가 없는 스트림으로 사용되는 인스턴스다.
+```
+Stream<String> stream = Stream.empty();
+```
 #### 기본형(Primitive)
 기본형은 int, long, double에 해당하는 `IntStream`, `LongStream`, `DoubleStream`이 제공된다.
 String
@@ -27,11 +32,6 @@ Stream<String> streamPart = Arrays.stream(arr, 1, 3);
 ```
 Collection<String> collection = Arrays.asList("a", "b", "c");
 Stream<String> stream = collection.stream();
-```
-#### 빈(Empty) 스트림
-원소가 없는 스트림이 null을 반환하는 대신 빈 스트림을 반환하도록 할 수 있다.
-```
-Stream<String> stream = Stream.empty();
 ```
 #### build
 builder()에 원소들을 add()한 후, build()로 종료한다.
@@ -80,6 +80,8 @@ List<String> uris = new ArrayList<>();
 uris.add("C:\\file.txt");
 Stream<Path> stream = uris.stream().map(uri -> Paths.get(uri)); // 각 uri를 path로 변환하여 가져온다.
 ```
+`flatMap`은 `map`과 동일한 방식으로 사용하는데,  
+각 원소가 자신의 시퀀스를 가질 때 각 내부 원소들에 대해 적용하여 하나의 스트림으로 만든다.
 #### collecting
 다음은 리스트로 최종 반환하는 예시다.
 ```
