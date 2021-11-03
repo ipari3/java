@@ -13,39 +13,38 @@ Stream<String> stream = Stream.empty();
 ```
 #### 기본형(Primitive)
 기본형은 int, long, double에 해당하는 `IntStream`, `LongStream`, `DoubleStream`이 제공된다.
-String
 ```
 IntStream stream1 = IntStream.of(1, 2, 3);
 IntStream stream2 = IntStream.range(1, 4); // 파이썬의 range처럼 마지막을 포함하지 않는다. 다만 step을 지정할 수 없다.
 IntStream stream3 = IntStream.rangeClosed(1, 3); // 마지막을 포함한다.
 IntStream stream4 = "abc".chars(); // char에 대한 스트림은 따로 제공되지 않으며, 문자열의 chars 메소드를 통해 IntStream에 넣는다.
 ```
-#### 배열(Array)
+#### 배열(Array), 컬렉션(Collection)
 ```
+// 배열
 Stream<String> stream = Stream.of("a", "b", "c");
 
 String[] arr = new String[]{"a", "b", "c");
 Stream<String> streamFull = Arrays.stream(arr);
 Stream<String> streamPart = Arrays.stream(arr, 1, 3);
-```
-#### 컬렉션(Collection)
-```
+
+// 컬렉션
 Collection<String> collection = Arrays.asList("a", "b", "c");
 Stream<String> stream = collection.stream();
 ```
-#### build
+#### build, generate, iterate
 builder()에 원소들을 add()한 후, build()로 종료한다.
 builder는 암시적으로 Stream\<Object> 인스턴스를 생성하므로, builder 앞에 원하는 타입을 다이아몬드 연산자에 입력해주어야 한다.
 ```
 Stream<String> stream = Stream.<String>builder().add("a").add("b").add("c").build();
 ```
-#### generate
+
 `Supplier<T>`를 이용하여 값을 발생시킨다.  
 `limit(n)`으로 발생 횟수를 제한해주어야 한다. 그렇지 않으면 메모리 한계치까지 무한정 발생시킨다.
 ```
 Stream<String> stream = Stream.generate(() -> "a").limit(10);
 ```
-#### iterate
+
 마찬가지로 횟수를 제한해주어야 한다.
 ```
 Stream<Integer> stream = Stream.iterate(2, n -> n + 2).limit(10); 2부터 20까지의 짝수
