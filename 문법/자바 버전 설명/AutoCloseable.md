@@ -13,7 +13,7 @@ try (Statement stmt = con.createStatement()) {
 
 ## AutoClseable
 AutoClseable를 구현한 클래스는 매우 많다.  
-주로 -Channel, -Stream, -Reader, -Writer, -Loader, -Socket, -File의 이름을 갖는다.
+주로 -Channel, -Stream, -Reader, -Writer, -Loader, -Socket, -File의 이름을 갖는다.  
 ([외부 링크에서 더 보기][1])
 
 
