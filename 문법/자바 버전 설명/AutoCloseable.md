@@ -8,7 +8,7 @@ try (Statement stmt = con.createStatement()) {
     ...
 }
 ```
-> **flush**: 데이터를 write하면, 바로 쓰이는 게 아니라 버퍼에 저장된다.  
+> **flush**: 데이터를 write하면  버퍼에 저장된다.  
 > flush는 버퍼의 데이터가 모두 쓰였는지 확인해준다.
 
 ## AutoClseable
