@@ -1,5 +1,6 @@
 ## try-with-resources
 AutoCloseable 객체를 자동으로 close해준다.  
+close는 flush부터 수행하고 clear한다. (따라서 따로 flush할 필요가 없다.)
 ```
 try (Statement stmt = con.createStatement()) {
     ...
@@ -7,6 +8,8 @@ try (Statement stmt = con.createStatement()) {
     ...
 }
 ```
+> **flush**: 데이터를 write하면, 바로 쓰이는 게 아니라 버퍼에 저장된다.  
+> flush는 버퍼의 데이터가 모두 쓰였는지 확인해준다.
 
 ## AutoClseable
 AutoClseable를 구현한 클래스는 매우 많다.  
