@@ -96,12 +96,18 @@ ByteArrayInputStream는 byte\[] 버퍼를 받으며, int offset과 int length를
 이미지 데이터 등이 raw 바이트에 해당하며, 문자 스트림을 쓰고 읽을 때는 `FileWriter`와 `FileReader`를 이용한다.  
 이 외에도 다양한 직렬화 방법이 존재한다.
 - 문자열 형태로 직렬화  
-
+바이너리 프로토콜에 비해 인코딩과 디코딩 비용이 크다. 오버헤드가 훨씬 커서 CPU와 대역폭을 더 소모한다.  
+그러나 개발 측면에서 편리하며 생산성을 높일 수 있다.
   - CSV: 데이터를 콤마로 구분하는 방법으로, 표 형태의 빅데이터 직렬화에 많이 사용된다.  
   **Apache Commons CSV**, **opencsv** 등의 라이브러리를 이용할 수 있다.
   - JSON: 구조적 데이터에 많이 사용되며, 자바스크립트에서 쉽게 사용할 수 있고 오버헤드가 적어 XML을 밀어내고 많이 사용된다.  
   **Jackson**, **GSON** 등의 라이브러리를 이용할 수 있다.
-- 이진 형태로 직렬화
+- 이진 형태로 직렬화  
+다양한 바이너리 프로토콜이 존재하여 데이터 변환과 전송 방법 등이 제시된다.  
+**Protocol Buffer**, **Apache Avro** 등이 있다.  
+자바 개발자의 입장에서는 자바 직렬화, 문자열 직렬화, 이진 직렬화 순으로 개발이 편하다.  
+성능은 대략 그 반대라고 볼 수 있다.  
+([외부에서 더 보기][7])
 
 [1]: https://github.com/ipari3/java/blob/main/%EB%AC%B8%EB%B2%95/%EC%9E%90%EB%B0%94%20%EB%B2%84%EC%A0%84%20%EC%84%A4%EB%AA%85/AutoCloseable.md#try-with-resources
 [2]: https://www.oracle.com/java/technologies/javase/seccodeguide.html
@@ -109,3 +115,4 @@ ByteArrayInputStream는 byte\[] 버퍼를 받으며, int offset과 int length를
 [4]: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/FilterInputStream.html
 [5]: https://ducmanhphan.github.io/2019-01-07-Implementation-with-file-in-java/
 [6]: https://j.mearie.org/post/122845365013/serialization
+[7]: https://techblog.woowahan.com/2550/
