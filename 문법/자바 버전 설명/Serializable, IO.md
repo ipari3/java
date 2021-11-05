@@ -93,8 +93,9 @@ ByteArrayInputStream는 byte\[] 버퍼를 받으며, int offset과 int length를
 각각 write 관련, read 관련 메소드를 갖는다.  
 
 > **raw bytes**: gap이나 마커로 구분되지 않고 나열된 바이트들이다. 미가공 바이트라고 번역하기도 한다.
-이미지 데이터 등이 raw 바이트에 해당하며, 문자 스트림을 쓰고 읽을 때는 `FileWriter`와 `FileReader`를 이용한다.  
-이 외에도 다양한 직렬화 방법이 존재한다.
+이미지 데이터 등이 raw 바이트에 해당하며, 문자 스트림을 쓰고 읽을 때는 `FileWriter`와 `FileReader`를 이용한다.
+
+## 기타 직렬화 방법
 - 문자열 형태로 직렬화  
 바이너리 프로토콜에 비해 인코딩과 디코딩 비용이 크다. 오버헤드가 훨씬 커서 CPU와 대역폭을 더 소모한다.  
 그러나 개발 측면에서 편리하며 생산성을 높일 수 있다.
@@ -108,7 +109,7 @@ ByteArrayInputStream는 byte\[] 버퍼를 받으며, int offset과 int length를
   
 자바 개발자의 입장에서는 자바 직렬화, 문자열 직렬화, 이진 직렬화 순으로 개발이 편하다.  
 성능은 대략 그 반대라고 볼 수 있다.  
-([외부에서 더 보기][7])
+(외부에서 [더 보기1][7], [더 2][8])
 
 [1]: https://github.com/ipari3/java/blob/main/%EB%AC%B8%EB%B2%95/%EC%9E%90%EB%B0%94%20%EB%B2%84%EC%A0%84%20%EC%84%A4%EB%AA%85/AutoCloseable.md#try-with-resources
 [2]: https://www.oracle.com/java/technologies/javase/seccodeguide.html
@@ -117,3 +118,4 @@ ByteArrayInputStream는 byte\[] 버퍼를 받으며, int offset과 int length를
 [5]: https://ducmanhphan.github.io/2019-01-07-Implementation-with-file-in-java/
 [6]: https://j.mearie.org/post/122845365013/serialization
 [7]: https://techblog.woowahan.com/2550/
+[8]: https://nesoy.github.io/articles/2018-04/Java-Serialize
