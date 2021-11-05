@@ -16,7 +16,8 @@ public class Employee implements java.io.Serializable {
 ## 직렬화 (Serialization)
 객체의 상태를 바이트 스트림으로 변환하는 것.  
 바이트 스트림은 데이터베이스로 저장되거나 네트워크로 전송될 수 있다.  
-**역직렬화**(Deseriealization)는 그 반대 과정이다.
+**역직렬화**(Deseriealization)는 그 반대 과정이다.  
+넓은 의미의 직렬화는 역직렬화를 포함하여, 객체를 바이트로 변환하였다가 다시 사용가능한 객체로 복구하는 것을 말한다.
 #### serialize
 직렬화는 쓰기(write)위한 스트림인 OutputStream 관련 클래스들을 이용한다.  
 직렬화 결과를 파일로 저장할 때, 표준 확장자는 **.ser**이다. (txt 등을 사용해도 상관없다.)
@@ -70,7 +71,11 @@ try (
 ByteArrayOutputStream는 인자를 받지 않거나, int로 size를 받는다.  
 ByteArrayInputStream는 byte\[] 버퍼를 받으며, int offset과 int length를 추가로 받을 수도 있다.
 각각 write 관련, read 관련 메소드를 갖는다.  
-또한 ByteArrayOutputStream는 `toByteArray()`와 `toString()` 메소드로 데이터를 얻을 수 있다.
+또한 ByteArrayOutputStream는 `toByteArray()`와 `toString()` 메소드로 데이터를 얻을 수 있다.  
+  
+위의 예시 코드에서는 파일로 저장했다가 불러왔는데,  
+파일로 저장할 필요없이 바이트어레이로 해결하려면 파일 관련 클래스 대신 이 클래스들로 대체하면 된다.  
+이때 ByteArrayOutputStream는 인자로 받을 byte\[] 변수가 필요하다.
 #### Filter-Stream
 다른 조작을 위한 스트림을 포함한다.  
 서브클래스로 Buffered-Stream, Data-Stream 등이 있다.  
@@ -79,12 +84,19 @@ ByteArrayInputStream는 byte\[] 버퍼를 받으며, int offset과 int length를
 위의 두 클래스와 방향이 반대다. (Object, ByteArray, Filter <-> In/Out-putStream <-> File)
 - `FileOutputStream`: raw 바이트 스트림을 File 혹은 FileDescriptor로 쓸 때 사용한다.
 - `FileInputStream`: 파일에서 바이트 스트림을 읽어온다.
+
+둘 다 File, FileDescriptor, String 중 한 타입의 인수를 받는다. (String 인자는 경로 및 파일명)  
+각각 write 관련, read 관련 메소드를 갖는다.  
+
 > **raw bytes**: gap이나 마커로 구분되지 않고 나열된 바이트들이다. 미가공 바이트라고 번역하기도 한다.
 이미지 데이터 등이 raw 바이트에 해당하며, 문자 스트림을 쓰고 읽을 때는 `FileWriter`와 `FileReader`를 이용한다.  
-  
-둘 다 File, FileDescriptor, String 중 한 타입의 인수를 받는다. (String 인자는 경로 및 파일명)  
-각각 write 관련, read 관련 메소드를 갖는다.
-
+이 외에도 다양한 직렬화 방법이 존재한다.
+- 문자열 형태로 직렬화
+  - CSV: 데이터를 콤마로 구분하는 방법으로, 표 형태의 빅데이터 직렬화에 많이 사용된다.  
+  **Apache Commons CSV**, **opencsv** 등의 라이브러리를 이용할 수 있다.
+  - JSON: 구조적 데이터에 많이 사용되며, 자바스크립트에서 쉽게 사용할 수 있고 오버헤드가 적어 XML을 밀어내고 많이 사용된다.  
+  **Jackson**, **GSON** 등의 라이브러리를 이용할 수 있다.
+- 이진 형태
 
 [1]: https://github.com/ipari3/java/blob/main/%EB%AC%B8%EB%B2%95/%EC%9E%90%EB%B0%94%20%EB%B2%84%EC%A0%84%20%EC%84%A4%EB%AA%85/AutoCloseable.md#try-with-resources
 [2]: https://www.oracle.com/java/technologies/javase/seccodeguide.html
