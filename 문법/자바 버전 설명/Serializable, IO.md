@@ -109,7 +109,7 @@ ByteArrayInputStream는 byte\[] 버퍼를 받으며, int offset과 int length를
   
 자바 개발자의 입장에서는 자바 직렬화, 문자열 직렬화, 이진 직렬화 순으로 개발이 편하다.  
 성능은 대략 그 반대라고 볼 수 있다.  
-(외부에서 [더 보기1][7], [더 2][8])
+(외부에서 [더 보기1][7], [더 보기2][8])
 
 [1]: https://github.com/ipari3/java/blob/main/%EB%AC%B8%EB%B2%95/%EC%9E%90%EB%B0%94%20%EB%B2%84%EC%A0%84%20%EC%84%A4%EB%AA%85/AutoCloseable.md#try-with-resources
 [2]: https://www.oracle.com/java/technologies/javase/seccodeguide.html
