@@ -33,7 +33,7 @@ try (
     return null;
 }
 ```
-> [**try-with-resources**][1]
+> [**try-with-resources**][1]를 사용하여 코드를 줄일 수 있다.
 #### deserialize
 역직렬화는 읽기(read)위한 스트림인 InputStream 관련 클래스들을 이용한다.  
 ```
