@@ -48,8 +48,9 @@ Optional<String> opt = Optional.empty();
 OptionalInt opt = OptionalInt.of(0);
 OptionalInt stream = IntStream.of(1, 2, 3);
 ```
+기본형은 Optional<Integer> 등으로 사용하지 않고 OptionalInt 등을 사용하는 것이 좋다.
 #### 래퍼 타입
-- `of`: non-null 값을 받는다.
+- `of`: non-null 값을 받는다. 인자가 null이 아님이 보장될 때 사용한다.
 - `ofNullable`: null 값을 받으면 빈 옵셔널 `Optional.empty()`를 반환한다.
 ```
 Optional<String> opt1 = Optional.of(str); // str이 null이면 예외를 던짐
@@ -130,7 +131,8 @@ public void f(String a, Optional<String> b) { ... }
 // 옳은 선언
 void f(String a) { ... }
 void f(String a, String b) { ... }
-```  
+```
+또한 생성자나 메소드의 반환타입으로도 사용하지 않는다.
 #### 필드에 사용하지 않는다.
 마찬가지로 필드로 사용하기 적합하지 않다.  
 옵셔널은 [`Serializable`][2]을 구현하지 않는다.
