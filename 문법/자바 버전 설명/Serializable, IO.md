@@ -14,8 +14,12 @@ public class Employee implements java.io.Serializable {
 > 주로 사회보장번호나 비밀번호 등의 보안 정보가 이에 해당한다.
 
 ## 직렬화 (Serialization)
-객체의 상태를 바이트 스트림으로 변환하는 것.  
-바이트 스트림은 데이터베이스로 저장되거나 네트워크로 전송될 수 있다.  
+직렬화는 다차원의 데이터를 일차원으로 연결(직렬)하는 것이며,  
+자료를 파일로 저장하거나 네트워크로 전송하기 위해 수행한다.  
+([외부에서 더 보기][6])  
+  
+자바 객체에 대입해보면, 객체의 다양한 상태(필드)를 바이트스트림으로 변환하는 것이며,  
+바이트스트림은 데이터베이스로 저장되거나 네트워크로 전송될 수 있다.  
 **역직렬화**(Deseriealization)는 그 반대 과정이다.  
 넓은 의미의 직렬화는 역직렬화를 포함하여, 객체를 바이트로 변환하였다가 다시 사용가능한 객체로 복구하는 것을 말한다.
 #### serialize
@@ -91,15 +95,17 @@ ByteArrayInputStream는 byte\[] 버퍼를 받으며, int offset과 int length를
 > **raw bytes**: gap이나 마커로 구분되지 않고 나열된 바이트들이다. 미가공 바이트라고 번역하기도 한다.
 이미지 데이터 등이 raw 바이트에 해당하며, 문자 스트림을 쓰고 읽을 때는 `FileWriter`와 `FileReader`를 이용한다.  
 이 외에도 다양한 직렬화 방법이 존재한다.
-- 문자열 형태로 직렬화
+- 문자열 형태로 직렬화  
+
   - CSV: 데이터를 콤마로 구분하는 방법으로, 표 형태의 빅데이터 직렬화에 많이 사용된다.  
   **Apache Commons CSV**, **opencsv** 등의 라이브러리를 이용할 수 있다.
   - JSON: 구조적 데이터에 많이 사용되며, 자바스크립트에서 쉽게 사용할 수 있고 오버헤드가 적어 XML을 밀어내고 많이 사용된다.  
   **Jackson**, **GSON** 등의 라이브러리를 이용할 수 있다.
-- 이진 형태
+- 이진 형태로 직렬화
 
 [1]: https://github.com/ipari3/java/blob/main/%EB%AC%B8%EB%B2%95/%EC%9E%90%EB%B0%94%20%EB%B2%84%EC%A0%84%20%EC%84%A4%EB%AA%85/AutoCloseable.md#try-with-resources
 [2]: https://www.oracle.com/java/technologies/javase/seccodeguide.html
 [3]: https://docs.oracle.com/en/java/javase/17/core/serialization-filtering1.html#GUID-55BABE96-3048-4A9F-A7E6-781790FF3480
 [4]: https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/io/FilterInputStream.html
 [5]: https://ducmanhphan.github.io/2019-01-07-Implementation-with-file-in-java/
+[6]: https://j.mearie.org/post/122845365013/serialization
