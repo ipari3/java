@@ -33,10 +33,14 @@ Integer i = list.iterator().next();
 다만 제네릭은 타입을 제한하여 해당 타입의 원소만 가질 수 있다.  
 단일 타입만 가능한 것은 아니고, 만약 `List<Serializable>`이라면 이에 해당하는 Integer, String 등이 모두 가능하다.
 ### 포괄적인 타입
-타입 변수(type variable)을 이용하여 클래스, 인터페이스, 메소드, 생성자를 만들 수 있다.  
+타입 변수(type variable) 이용하여 클래스, 인터페이스, 메소드, 생성자를 만들 수 있다.  
 클래스 등이 타입 변수를 포함하면 제네릭하다고 하고, 각각 제네릭 클래스 등으로 부른다.
-#### type parameter (class, interface)
-제네릭인 클래스나 인터페이스는 타입 변수인가 매개변수처럼 사용되며, 이를 타입 매개변수(type parameter)라고 부른다.
+- 클래스, 인터페이스: `public class Box<T> { ... }`의 형태로 사용
+- 메소드, 생성자: `public <T> List<T> fromArrayToList(T[] a) { ... }`의 형태로 사용
+
+## 사용
+### type parameter (class, interface)
+제네릭인 클래스나 인터페이스는 타입 변수가 매개변수처럼 사용되며, 이를 타입 매개변수(type parameter)라고 부른다.
 ```
 public class Box<T> {
     private T data;
@@ -66,7 +70,7 @@ public class Entry<K, V> {
 - \<E>: element
 - \<K>: key  
 \<V>: value
-#### formal type parameter (method, constructor)
+### formal type parameter (method, constructor)
 접근제어자와 반환타입 사이에 제네릭을 명시해준다.
 ```
 public <T> List<T> fromArrayToList(T[] a) {
@@ -86,9 +90,9 @@ public <E> Entry(E element) {
 }
 ```
 클래스에서 제네릭 \<T>를 사용하는 경우, `public Entry(T data) { ... }`처럼 생성자를 만들어도 제네릭 생성자라고 한다.  
-
-## 기타
-#### Bounded Generics
+### Bounded Generics
+제네릭은 기본적으로 모든 타입을 포함하는 `Object`로 대체된다.  
+다이아몬드 연산자 안에서 extends나 super로 제네릭의 범위를 제한할 수 있다.
 - extends A: A와 A의 모든 서브클래스만 허용 (upper bound)
 - super A: A와 A의 모든 수퍼클래스만 허용 (lower bound)
 ```
@@ -99,4 +103,15 @@ public <E> Entry(E element) {
 비슷하게 클래스인 타입은 Number처럼 맨 앞에 명시해주어야 하며,  
 따라서 클래스인 타입은 하나만 가능하다. 그렇지 않으면 컴파일시간 에러가 발생한다.
 #### Wildcard
-와일드카드는 `?`로 표시하며 미확인 타입(unknown type)을 가리킨다.
+와일드카드는 `?`로 표시하며 미확인 타입(unknown type)을 가리킨다.  
+마찬가지로 extends나 super와 함께 사용하여 컬렉션 원소의 타입을 제한한다.
+```
+// buildings의 원소 타입은 Building만 가능
+public static void paintAllBuildings(List<Building> buildings) { ... }
+
+// buildings의 원소 타입이 Building과 Building의 서브클래스가 가능
+public static void paintAllBuildings(List<? extends Building> buildings) { ... }
+```
+와일드카드가 필요한 이유는 제네릭 자체의 제한으로는 컬렉션의 원소를 제한할 수 없기 때문이다.  
+예를 들어, `Object`는 `String`의 수퍼클래스지만,  
+`List<Object>`는 `List<String>`의 수퍼클래스가 아니다.
