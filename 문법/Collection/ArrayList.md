@@ -1,6 +1,9 @@
+## 선언
 ```
 import java.util.ArrayList;
 
+ArrayList<Integer> numbers = new ArrayList<>();
+ArrayList<Integer> numbers = new ArrayList<>();
 ArrayList<Integer> numbers = new ArrayList<>();
 ```
 
